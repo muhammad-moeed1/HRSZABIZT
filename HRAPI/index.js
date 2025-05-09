@@ -15,6 +15,25 @@ app.get('/',async(req,res)=>{
     }
 });
 
+app.get('/location',async(req,res)=>{
+    try{
+        const result = await pool.query('select * from locations');
+        res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message0});
+    }
+});
+
+app.get('/getEmplocationCountry',async(req,res)=>{
+    try{
+        const result = await pool.query('select * from locations');
+        res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message0});
+    }
+});
+
+
 app.get('/lc',async(req,res)=>{
     try{
         const result = await pool.query('select count(*) from locations');
