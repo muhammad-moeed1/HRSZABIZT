@@ -62,6 +62,24 @@ app.get('/cnt',async(req,res)=>{
     }
 });
 
+app.get('/country',async(req,res)=>{
+    try{
+        const result = await pool.query('select * from countries');
+        res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message0});
+    }
+});
+
+app.get('/employee',async(req,res)=>{
+    try{
+        const result = await pool.query('select * from employees');
+        res.json(result.rows);
+    }catch(err){
+        res.status(500).json({Error:err.message0});
+    }
+});
+
 app.get('/rgn',async(req,res)=>{
     try{
         const result = await pool.query('select count(*) from regions');
