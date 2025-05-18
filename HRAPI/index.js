@@ -15,26 +15,7 @@ app.get('/',async(req,res)=>{
     }
 });
 
-app.get('/location',async(req,res)=>{
-    try{
-        const result = await pool.query('select * from locations');
-        res.json(result.rows);
-    }catch(err){
-        res.status(500).json({Error:err.message0});
-    }
-});
-
-app.get('/getEmplocationCountry',async(req,res)=>{
-    try{
-        const result = await pool.query('select * from locations');
-        res.json(result.rows);
-    }catch(err){
-        res.status(500).json({Error:err.message0});
-    }
-});
-
-
-app.get('/lc',async(req,res)=>{
+app.get('/tolloc',async(req,res)=>{
     try{
         const result = await pool.query('select count(*) from locations');
         res.json(result.rows);
@@ -43,17 +24,16 @@ app.get('/lc',async(req,res)=>{
     }
 });
 
-
-app.get('/empTotal',async(req,res)=>{
+app.get('/tolemp',async(req,res)=>{
     try{
-        const result = await pool.query('select count(employee_id) from employees');
+        const result = await pool.query('select count(*) from employees');
         res.json(result.rows);
     }catch(err){
         res.status(500).json({Error:err.message0});
     }
 });
 
-app.get('/cnt',async(req,res)=>{
+app.get('/tolcon',async(req,res)=>{
     try{
         const result = await pool.query('select count(*) from countries');
         res.json(result.rows);
@@ -62,25 +42,7 @@ app.get('/cnt',async(req,res)=>{
     }
 });
 
-app.get('/country',async(req,res)=>{
-    try{
-        const result = await pool.query('select * from countries');
-        res.json(result.rows);
-    }catch(err){
-        res.status(500).json({Error:err.message0});
-    }
-});
-
-app.get('/employee',async(req,res)=>{
-    try{
-        const result = await pool.query('select * from employees');
-        res.json(result.rows);
-    }catch(err){
-        res.status(500).json({Error:err.message0});
-    }
-});
-
-app.get('/rgn',async(req,res)=>{
+app.get('/tolreg',async(req,res)=>{
     try{
         const result = await pool.query('select count(*) from regions');
         res.json(result.rows);
@@ -89,7 +51,7 @@ app.get('/rgn',async(req,res)=>{
     }
 });
 
-app.get('/dep',async(req,res)=>{
+app.get('/toldep',async(req,res)=>{
     try{
         const result = await pool.query('select count(*) from departments');
         res.json(result.rows);
@@ -98,7 +60,7 @@ app.get('/dep',async(req,res)=>{
     }
 });
 
-app.get('/jh',async(req,res)=>{
+app.get('/toljh',async(req,res)=>{
     try{
         const result = await pool.query('select count(*) from job_history');
         res.json(result.rows);
@@ -116,6 +78,10 @@ app.get('/job',async(req,res)=>{
     }
 });
 
+
+
+
+
 app.get('/40',async(req,res)=>{
     try{
         const result = await pool.query('Select e.first_name, e.last_name, l.city, l.postal_code, c.country_name from employees e left join departments d on e.department_id = d.department_id left join locations l on d.location_id = l.location_id left join countries c on l.country_id = c.country_id limit 5');
@@ -124,6 +90,7 @@ app.get('/40',async(req,res)=>{
         res.status(500).json({Error:err.message0});
     }
 });
+
 
 app.get('/41',async(req,res)=>{
     try{
